@@ -17,7 +17,7 @@ Some notes to point out before starting:
 
 1.Proper security audit has not been ran on this application, therefore it is highly advised you use a private/public key pair that you do not intend to use in the future.
 
-2.Due to the above's recommendation for a private/public key one-time-use, this application will only accept 1 TXIN and 1 TXOUT output transaction. In other words, 1 UTXO in and 1 UTXO out. No change address option is provided. 
+2.Due to the above's recommendation for a private/public key one-time-use, this application will only accept 1 TXIN and 1 TXOUT output transaction. In other words, 1 UTXO in and 1 UTXO out. Use a bitcoin address that already only contains 1 UTXO. No change address option is provided. 
 
 3.This will only support P2PKH and P2WPKH transactions. 
 
@@ -52,3 +52,4 @@ Step 9: Broadcast given transaction hex.
 - Allowing for multiple TXIN and TXOUT capabilities.
 - UI/UX improvement. If you are viewing the application on the small screen, it is suggested to zoom out in the browser for better viewing experience.
 - Proper codebase audit/review.
+- Fixing existing multiple UTXO display UI after querying the UTXOs pertaining to an address.
