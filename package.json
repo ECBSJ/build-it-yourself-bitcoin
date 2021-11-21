@@ -1,0 +1,30 @@
+{
+  "name": "bitcoinjs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "practice_1.js",
+  "scripts": {
+    "watch": "nodemon app",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@mempool/mempool.js": "^2.2.4",
+    "bech32": "^2.0.0",
+    "bip32-utils": "^0.11.1",
+    "bip39": "^3.0.4",
+    "bitcoinjs-lib": "^5.2.0",
+    "bs58": "^4.0.1",
+    "crypto-js": "^4.1.1",
+    "csurf": "^1.11.0",
+    "dotenv": "^10.0.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "node-fetch": "^2.6.1",
+    "nodemon": "^2.0.12",
+    "request": "^2.88.2"
+  }
+}

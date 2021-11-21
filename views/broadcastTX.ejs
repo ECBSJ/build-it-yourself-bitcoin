@@ -1,0 +1,50 @@
+<html lang="en">
+  <%- include('includes/header') %>
+
+  <body>
+    <div class="parent1">
+      <div class="child1">
+        <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="currentColor" class="bi bi-router mb-3" viewBox="0 0 16 16">
+          <path d="M5.525 3.025a3.5 3.5 0 0 1 4.95 0 .5.5 0 1 0 .707-.707 4.5 4.5 0 0 0-6.364 0 .5.5 0 0 0 .707.707Z" />
+          <path d="M6.94 4.44a1.5 1.5 0 0 1 2.12 0 .5.5 0 0 0 .708-.708 2.5 2.5 0 0 0-3.536 0 .5.5 0 0 0 .707.707ZM2.5 11a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1Zm4.5-.5a.5.5 0 1 0 1 0 .5.5 0 0 0-1 0Zm2.5.5a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1Zm1.5-.5a.5.5 0 1 0 1 0 .5.5 0 0 0-1 0Zm2 0a.5.5 0 1 0 1 0 .5.5 0 0 0-1 0Z" />
+          <path d="M2.974 2.342a.5.5 0 1 0-.948.316L3.806 8H1.5A1.5 1.5 0 0 0 0 9.5v2A1.5 1.5 0 0 0 1.5 13H2a.5.5 0 0 0 .5.5h2A.5.5 0 0 0 5 13h6a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5h.5a1.5 1.5 0 0 0 1.5-1.5v-2A1.5 1.5 0 0 0 14.5 8h-2.306l1.78-5.342a.5.5 0 1 0-.948-.316L11.14 8H4.86L2.974 2.342ZM14.5 9a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 1 .5-.5h13Z" />
+          <path d="M8.5 5.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0Z" />
+        </svg>
+        <h1>Step 9</h1>
+        <h2 class="display-5">Transaction Broadcasted</h2>
+        <h4><em>Your transaction has now been broadcasted to the Bitcoin network.</em></h4>
+        <div class="explanation">
+          <p>Congratulations! You have put together your own bitcoin transaction and have successfully broadcasted it to the network. With the given transaction hash string, you can go onto any public bitcoin explorer to see the status of the transaction.</p>
+        </div>
+        <button class="btn btn-outline-white bg-white" data-bs-toggle="modal" data-bs-target="#learn">Read More</button>
+
+        <div class="modal fade" id="learn" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="color: black">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Propagating Transactions</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <p>From Mastering Bitcoin by Andreas Antonopoulos: Once a bitcoin transaction is sent to any node connected to the bitcoin network, the transaction will be validated by that node. If valid, that node will propagate it to the other nodes to which it is connected, and a success message will be returned synchronously to the originator. If the transaction is invalid, the node will reject it and syn‐ chronously return a rejection message to the originator. The bitcoin network is a peer-to-peer network, meaning that each bitcoin node is connected to a few other bitcoin nodes that it discovers during startup through the peer-to-peer protocol. The entire network forms a loosely connected mesh without a fixed topology or any structure, making all nodes equal peers. Messages, including transactions and blocks, are propagated from each node to the peers to which it is connected. A new validated transaction injected into any node on the network will be sent to three to four of the neighboring nodes, each of which will send it to three to four more nodes, and so on. In this way, within a few seconds a valid transaction will propagate in an exponentially expanding ripple across the network until all connected nodes have received it.</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="child2">
+        <div class="txSent">
+          <h1 class="text-white">Transaction successfully broadcasted!</h1>
+          <p class="text-white">Transaction Hex: <span class="text-break" style="color: cyan"><%= transactionHex %></span></p>
+          <p class="text-white">Transaction Hash: <span class="text-break" style="color: cyan"><%= transactionHash %></span></p>
+        </div>
+      </div>
+      <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    </div>
+  </body>
+  <%- include('includes/footer') %>
+</html>

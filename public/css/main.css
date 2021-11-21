@@ -1,0 +1,364 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: auto;
+  color: white;
+  background-image: url(/img/background.png);
+  background-size: cover;
+  background-position: center;
+}
+
+.nav {
+  font-size: larger;
+}
+
+.child1-2 {
+  box-sizing: border-box;
+  background-color: none;
+  flex: 3;
+  border-radius: 10px;
+  margin-bottom: 2%;
+  color: white;
+  padding: 60;
+}
+
+.child2-3 {
+  animation-name: fadeLeft;
+  animation-duration: 1s;
+  box-sizing: border-box;
+  background-color: none;
+  flex: 5;
+  display: flex;
+  border-radius: 10px;
+}
+
+.grandchild {
+  margin: auto;
+}
+
+.grandchild h1 {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: 100px;
+}
+
+.grandchild h2 {
+  font-family: "Architects Daughter";
+  font-size: 70px;
+}
+
+.grandchild p {
+  font-size: 30px;
+}
+
+.parent1 {
+  max-width: 1700px;
+  box-sizing: border-box;
+  padding: 1%;
+  margin: auto;
+  margin-top: 10%;
+  border-radius: 10px;
+  height: 90%;
+  justify-content: space-between;
+}
+
+@keyframes fadeLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-200%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.child1 {
+  animation-name: fadeLeft;
+  animation-duration: 1s;
+  box-sizing: border-box;
+  background-color: rgba(53, 55, 211, 0.726);
+  flex: 3;
+  border-radius: 10px;
+  margin-bottom: 2%;
+  color: white;
+  padding: 60;
+}
+
+.child2 {
+  animation-name: fadeLeft;
+  animation-duration: 1s;
+  box-sizing: border-box;
+  background-color: rgba(13, 14, 19, 0.842);
+  flex: 5;
+  display: flex;
+  border-radius: 10px;
+}
+
+.child2 .pubaddinput {
+  margin: auto;
+  flex-basis: 70%;
+}
+
+.child2 form .pubaddinput {
+  width: 70%;
+}
+
+@media screen and (min-width: 900px) {
+  .parent1 {
+    display: flex;
+    height: 65%;
+  }
+
+  .child1 {
+    margin-right: 2%;
+    margin-bottom: 0%;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .child2 {
+    height: 30%;
+  }
+}
+
+input {
+  background: transparent;
+  border-color: white;
+  height: 40;
+  color: white;
+  font-size: 17;
+  letter-spacing: 5;
+  border-radius: 10px;
+  text-align: center;
+}
+
+input:hover {
+  border-color: rgb(142, 122, 255);
+  box-shadow: 0 0 30px rgb(142, 122, 255);
+}
+
+input:focus {
+  background-color: black;
+  border-color: white;
+  box-shadow: 0 0 30px white;
+}
+
+/* PubAddData page */
+
+.child2-1 {
+  animation-name: fadeLeft;
+  animation-duration: 1s;
+  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+  background-color: rgba(13, 14, 19, 0.842);
+  letter-spacing: 1;
+  flex: 5;
+  display: flex;
+  border-radius: 10px;
+}
+
+@media screen and (max-width: 900px) {
+  .child2-1 {
+    height: 40%;
+  }
+}
+
+.pubadddata {
+  margin: auto;
+  color: white;
+}
+
+.retrieveUTXObutton {
+  margin-top: 7%;
+}
+
+.retrieveUTXO {
+  text-decoration: none;
+  background: transparent;
+  border: 1px solid white;
+  border-color: white;
+  color: gray;
+  font-size: 15px;
+  font-weight: normal;
+  letter-spacing: 2px;
+  height: 40px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.retrieveUTXO:hover {
+  color: white;
+  border-color: rgb(142, 122, 255);
+  box-shadow: 0 0 30px rgb(142, 122, 255);
+}
+
+/* retrieveUTXO page */
+
+.child2-2 {
+  animation-name: fadeLeft;
+  animation-duration: 1s;
+  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+  background-color: rgba(13, 14, 19, 0.842);
+  flex: 5;
+  display: flex;
+  border-radius: 10px;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.UTXO {
+  color: white;
+  background-color: black;
+  flex: 1;
+  padding: 10px;
+  padding-left: 30px;
+  letter-spacing: 1;
+  border-radius: 10px;
+}
+
+.singleUTXO {
+  margin-left: 20px;
+}
+
+.TXBuilderForm {
+  background-color: rgba(53, 56, 211, 0.164);
+  margin-top: 5;
+  margin-bottom: 5px;
+  border-radius: 10px;
+  flex: 2;
+  color: white;
+}
+
+.TXBuilderForm button {
+  margin-left: 10px;
+  margin-top: 15px;
+}
+
+.TXOUT-Form {
+  margin-left: 10px;
+  display: flex;
+  margin-top: 20px;
+}
+
+.TXIN-Form {
+  margin-left: 10px;
+  display: flex;
+  margin-top: 20px;
+}
+
+.TXIN-and-Out-Labels {
+  font-weight: bold;
+  margin-right: 20px;
+}
+
+.form-control-TXIN {
+  margin-right: 10px;
+  border: solid 0.3px gray;
+  flex: 1;
+}
+
+.form-control-TXOUT {
+  margin-right: 10px;
+  border: solid 0.3px gray;
+  flex: 1;
+}
+
+/* Enter Rec Add to build SPK */
+
+.buildSPKForm {
+  flex: 3;
+  background-color: black;
+  border-radius: 10px;
+  display: flex;
+  padding: 10px;
+}
+
+.buildSPKForm .pubaddinput {
+  margin: auto;
+  flex-basis: 70%;
+}
+
+.buildSPKForm form .pubaddinput {
+  width: 70%;
+}
+
+.form-control-TXIN-filled {
+  margin-right: 10px;
+  flex: 1;
+}
+
+.form-control-TXOUT-filled {
+  margin-right: 10px;
+  flex: 1;
+}
+
+.inputtingOPS {
+  flex: 3;
+}
+
+.OP-Form {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.OP-Input {
+  background: transparent;
+  border-color: gray;
+  height: 35;
+  width: 550;
+  color: white;
+  font-size: 17;
+  letter-spacing: 5;
+  border-radius: 10px;
+  text-align: center;
+  margin: auto;
+}
+
+.OP-Input:hover {
+  border-color: blue;
+  box-shadow: 0 0 30px blue;
+}
+
+.OP-Input:focus {
+  border-color: blue;
+  box-shadow: 0 0 30px blue;
+}
+
+.showSPK {
+  flex: 2;
+  background-color: black;
+  border-radius: 10px;
+  margin-left: 5px;
+  padding-top: 5%;
+}
+
+.TXIN-Form-2 {
+  margin-left: 10px;
+  display: flex;
+  margin-top: 7px;
+}
+
+.TXOUT-Form-2 {
+  margin-left: 10px;
+  display: flex;
+  margin-top: 5px;
+  margin-bottom: 0;
+}
+
+.preSigned {
+  margin: auto;
+  width: 400px;
+}
+
+.txSent {
+  margin: auto;
+  flex-basis: 70%;
+}
+
+footer {
+  color: white;
+  font-size: large;
+  margin-top: 10%;
+}

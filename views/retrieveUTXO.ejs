@@ -1,0 +1,105 @@
+<html lang="en">
+  <%- include('includes/header') %>
+
+  <body>
+    <div class="parent1">
+      <div class="child1">
+        <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="currentColor" class="bi bi-bezier2 mb-3" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M1 2.5A1.5 1.5 0 0 1 2.5 1h1A1.5 1.5 0 0 1 5 2.5h4.134a1 1 0 1 1 0 1h-2.01c.18.18.34.381.484.605.638.992.892 2.354.892 3.895 0 1.993.257 3.092.713 3.7.356.476.895.721 1.787.784A1.5 1.5 0 0 1 12.5 11h1a1.5 1.5 0 0 1 1.5 1.5v1a1.5 1.5 0 0 1-1.5 1.5h-1a1.5 1.5 0 0 1-1.5-1.5H6.866a1 1 0 1 1 0-1h1.711a2.839 2.839 0 0 1-.165-.2C7.743 11.407 7.5 10.007 7.5 8c0-1.46-.246-2.597-.733-3.355-.39-.605-.952-1-1.767-1.112A1.5 1.5 0 0 1 3.5 5h-1A1.5 1.5 0 0 1 1 3.5v-1zM2.5 2a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zm10 10a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1z" />
+        </svg>
+        <h1>Step 3</h1>
+        <h2 class="display-5">Start TX Builder</h2>
+        <h4><em>With your UTXOs displaying, you can now start to build your transaction by inputting TXIn details.</em></h4>
+        <div class="explanation">
+          <p>Click on 'Start TX Builder' and first start inputting the necessary details for TXIn: TX ID, Output, and Value.</p>
+        </div>
+        <button class="btn btn-outline-white bg-white" data-bs-toggle="modal" data-bs-target="#learn">Read More</button>
+
+        <div class="modal fade" id="learn" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="color: black">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Transaction Inputs</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <p>From Mastering Bitcoin by Andreas Antonopoulos: In simple terms, transaction inputs are pointers to UTXO. They point to a specific UTXO by reference to the transaction hash and sequence number where the UTXO is recorded in the blockchain. To spend UTXO, a transaction input also includes unlocking scripts that satisfy the spending conditions set by the UTXO. The unlocking script is usually a signature proving ownership of the bitcoin address that is in the locking script.</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="child2-2">
+        <div class="UTXO">
+          <p><strong>unspent_outputs:</strong> [</p>
+          <div class="singleUTXO">
+            <% UTXOS.forEach(function(UTXO) { %>
+            <p>tx_hash: <span style="color: cyan"><%= UTXO['tx_hash_big_endian'] %></span></p>
+            <p>tx_output_n: <span style="color: yellow"><%= UTXO['tx_output_n'] %></span></p>
+            <p>script: <span style="color: cyan"><%= UTXO['script'] %></span></p>
+            <p>value: <span style="color: yellow"><%= UTXO['value'] %></span></p>
+            <p>value Hex: <span style="color: cyan"><%= UTXO['value_hex'] %></span></p>
+            <p>confirmations: <span style="color: yellow"><%= UTXO['confirmations'] %></span></p>
+            <p>tx_index: <span style="color: yellow"><%= UTXO['tx_index'] %></span> ]</p>
+            <% }) %>
+          </div>
+          <a href="#transaction-builder" data-bs-toggle="collapse" class="btn btn-primary btn-sm" role="button">Open TX Builder Form</a>
+        </div>
+
+        <form class="TXBuilderForm" id="TXBuilderForm" action="/enterRecipientAdd" method="POST">
+          <div class="collapse" id="transaction-builder">
+            <div class="TXIN-Form">
+              <p class="TXIN-and-Out-Labels">TXIn</p>
+              <input id="input-field-TXIN" class="form-control-TXIN" type="text" name="TXID" autocomplete="off" placeholder="TX ID" required />
+              <input id="input-field-TXIN" class="form-control-TXIN" type="number" name="output" autocomplete="off" placeholder="Output" required />
+              <input id="input-field-TXIN" class="form-control-TXIN" type="number" name="Value" autocomplete="off" placeholder="Value" required />
+              <input id="input-field-TXIN" class="form-control-TXIN" type="text" name="ScriptSig" autocomplete="off" placeholder="ScriptSig" disabled />
+            </div>
+
+            <div class="TXOUT-Form">
+              <p class="TXIN-and-Out-Labels">TXOut</p>
+              <input id="input-field-TXOUT" class="form-control-TXOUT" type="text" name="RecipientAdd" autocomplete="off" placeholder="RecipientAdd" disabled />
+              <input id="input-field-TXOUT" class="form-control-TXOUT" type="number" name="Amount" autocomplete="off" placeholder="Amount" disabled />
+              <input id="input-field-TXOUT" class="form-control-TXOUT" type="text" name="SPK" autocomplete="off" placeholder="ScriptPubKey" disabled />
+            </div>
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+            <button class="btn btn-primary">NEXT</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      document.getElementById("showTXBuilder").addEventListener("click", function (e) {
+        e.preventDefault()
+        document.getElementById("TXBuilderForm").insertAdjacentHTML(
+          "afterbegin",
+          `<h1>/Transaction Builder Form</h1>
+            
+            <div class="TXIN-Form">
+              <p class="TXIN-and-Out-Labels">TXIn</p>
+              <input id="input-field-TXIN" class="form-control-TXIN" type="text" name="TXID" autocomplete="off" placeholder="TX ID" required />
+              <input id="input-field-TXIN" class="form-control-TXIN" type="number" name="output" autocomplete="off" placeholder="Output" required />
+              <input id="input-field-TXIN" class="form-control-TXIN" type="number" name="Value" autocomplete="off" placeholder="Value" required />
+              <input id="input-field-TXIN" class="form-control-TXIN" type="text" name="ScriptSig" autocomplete="off" placeholder="ScriptSig" disabled/>
+            </div>
+
+            
+            <div class="TXOUT-Form">
+              <p class="TXIN-and-Out-Labels">TXOut</p>
+              <input id="input-field-TXOUT" class="form-control-TXOUT" type="text" name="RecipientAdd" autocomplete="off" placeholder="RecipientAdd" disabled/>
+              <input id="input-field-TXOUT" class="form-control-TXOUT" type="number" name="Amount" autocomplete="off" placeholder="Amount" disabled/>
+              <input id="input-field-TXOUT" class="form-control-TXOUT" type="text" name="SPK" autocomplete="off" placeholder="ScriptPubKey" disabled/>
+            </div>
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+            <button class="EnterRecAddButton">NEXT</button>`
+        )
+      })
+    </script>
+  </body>
+  <%- include('includes/footer') %>
+</html>

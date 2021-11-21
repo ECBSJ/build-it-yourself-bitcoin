@@ -1,0 +1,84 @@
+<html lang="en">
+  <%- include('includes/header') %>
+
+  <body>
+    <div class="parent1">
+      <div class="child1">
+        <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="currentColor" class="bi bi-body-text mb-3" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M0 .5A.5.5 0 0 1 .5 0h4a.5.5 0 0 1 0 1h-4A.5.5 0 0 1 0 .5Zm0 2A.5.5 0 0 1 .5 2h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5Zm9 0a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5Zm-9 2A.5.5 0 0 1 .5 4h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5Zm5 0a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5Zm7 0a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5Zm-12 2A.5.5 0 0 1 .5 6h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5Zm8 0a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5Zm-8 2A.5.5 0 0 1 .5 8h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5Zm7 0a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5Zm-7 2a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 0 1h-8a.5.5 0 0 1-.5-.5Zm0 2a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5Zm0 2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5Z" />
+        </svg>
+        <h1>Step 8</h1>
+        <h2 class="display-5">Finalize Transaction</h2>
+        <h4><em>Finalize the ScriptSig by combining both the signature and public key.</em></h4>
+        <div class="explanation">
+          <p>Input the given signature and public key into its respective fields and then click 'Generate Transaction Hex'. Afterwards, with the given transaction hex formatted string, send your transaction out by clicking 'Broadcast Transaction Hex to the Bitcoin Network'.</p>
+        </div>
+        <button class="btn btn-outline-white bg-white" data-bs-toggle="modal" data-bs-target="#learn">Read More</button>
+
+        <div class="modal fade" id="learn" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="color: black">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Broadcasting Transactions</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <p>From Mastering Bitcoin by Andreas Antonopoulos: First, a transaction needs to be delivered to the bitcoin network so that it can be propa‐ gated and included in the blockchain. In essence, a bitcoin transaction is just 300 to 400 bytes of data and has to reach any one of tens of thousands of bitcoin nodes. The senders do not need to trust the nodes they use to broadcast the transaction, as long as they use more than one to ensure that it propagates. The nodes don’t need to trust the sender or establish the sender’s “identity.” Because the transaction is signed and contains no con‐ fidential information, private keys, or credentials, it can be publicly broadcast using any underlying network transport that is convenient. Unlike credit card transactions, for example, which contain sensitive information and can only be transmitted on encrypted networks, a bitcoin transaction can be sent over any network. As long as the transaction can reach a bitcoin node that will propagate it into the bitcoin network, it doesn’t matter how it is transported to the first node.</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="child2-2">
+        <div class="buildSPKForm">
+          <form action="" method="">
+            <h1 class="text-white">ScriptSig/Witness</h1>
+            <p class="text-white">Signature: <span class="text-break" style="color: cyan"><%= Signature %></span></p>
+            <p class="text-white">PublicKey: <span class="text-break" style="color: cyan"><%= PublicKey %></span></p>
+          </form>
+        </div>
+
+        <form class="TXBuilderForm" id="generateTXHex" action="" method="">
+          <div class="TXIN-Form-2">
+            <p class="TXIN-and-Out-Labels">TXIn</p>
+            <p class="form-control-TXIN-filled">Input TX ID: <span class="text-break" style="color: cyan"><%= inputTXID %></span></p>
+            <p class="form-control-TXIN-filled">Input outputN: <span style="color: yellow"><%= outputN %></span></p>
+            <p class="form-control-TXIN-filled">Input Value: <span id="inputValue" style="color: yellow"><%= inputValue %></span></p>
+            <input id="input-field" class="form-control-TXIN" type="text" name="Signature" autocomplete="off" placeholder="Signature" required />
+            <input id="input-field" class="form-control-TXIN" type="text" name="PublicKey" autocomplete="off" placeholder="PublicKey" required />
+          </div>
+
+          <div class="TXOUT-Form-2">
+            <p class="TXIN-and-Out-Labels">TXOut</p>
+            <p class="form-control-TXOUT-filled">Entered Receipient Address: <span class="text-break" style="color: cyan"><%= RecAdd %></span></p>
+            <p class="form-control-TXOUT-filled">Amount: <span style="color: yellow"><%= Amount %></span></p>
+            <p class="form-control-TXOUT-filled">ScriptPubKey: <span class="text-break" style="color: cyan"><%= ScriptPubKey %></span></p>
+          </div>
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+          <button class="btn btn-primary mb-3">Generate Transaction Hex</button>
+        </form>
+        <form class="mt-4" id="transactionHex" action="/broadcastTX" method="POST"></form>
+      </div>
+
+      <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+      <script>
+        document.getElementById("generateTXHex").addEventListener("submit", function (e) {
+          e.preventDefault()
+          document.getElementById("transactionHex").insertAdjacentHTML(
+            "afterbegin",
+            `
+          <p class="text-white">TXHex: <span class="text-break" style="color: cyan"><%= TXHex %></span></p>
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+          <button class="btn btn-primary">Broadcast Transaction Hex to the Bitcoin Network</button>
+        `
+          )
+        })
+      </script>
+    </div>
+  </body>
+  <%- include('includes/footer') %>
+</html>

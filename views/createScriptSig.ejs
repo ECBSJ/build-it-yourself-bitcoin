@@ -1,0 +1,67 @@
+<html lang="en">
+  <%- include('includes/header') %>
+
+  <body>
+    <div class="parent1">
+      <div class="child1">
+        <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="currentColor" class="bi bi-pen mb-3" viewBox="0 0 16 16">
+          <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z" />
+        </svg>
+        <h1>Step 7</h1>
+        <h2 class="display-5">Sign Transaction</h2>
+        <h4><em>With the Pre-Signed Transaction Hash, you will now need to take your WIF private key to sign the transaction.</em></h4>
+        <div class="explanation">
+          <p>Click 'Sign transaction' to cryptographically sign the transaction hash.</p>
+        </div>
+        <button class="btn btn-outline-white bg-white" data-bs-toggle="modal" data-bs-target="#learn">Read More</button>
+
+        <div class="modal fade" id="learn" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="color: black">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Signing Transactions</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <p>From Mastering Bitcoin by Andreas Antonopoulos: The transaction contains proof of ownership for each amount of bitcoin (inputs) whose value is transferred, in the form of a digital signature from the owner, which can be independently validated by anyone. In bitcoin terms, “spending” is signing a trans‐ action that transfers value from a previous transaction over to a new owner identified by a bitcoin address.</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="child2-2">
+        <div class="buildSPKForm">
+          <form class="preSigned" action="/transmitTX" method="POST">
+            <p>Pre-Signed Transaction Hash: <span class="text-break" style="color: cyan"><%= presignedTXHash %></span></p>
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+            <button class="btn btn-primary">Sign transaction</button>
+          </form>
+        </div>
+
+        <form class="TXBuilderForm" action="" method="">
+          <div class="TXIN-Form-2">
+            <p class="TXIN-and-Out-Labels">TXIn</p>
+            <p class="form-control-TXIN-filled">Input TX ID: <span class="text-break" style="color: cyan"><%= inputTXID %></span></p>
+            <p class="form-control-TXIN-filled">Input outputN: <span style="color: yellow"><%= outputN %></span></p>
+            <p class="form-control-TXIN-filled">Input Value: <span id="inputValue" style="color: yellow"><%= inputValue %></span></p>
+            <input id="input-field" class="form-control-TXIN" type="text" name="ScriptSig" autocomplete="off" placeholder="ScriptSig" disabled />
+          </div>
+
+          <div class="TXOUT-Form-2">
+            <p class="TXIN-and-Out-Labels">TXOut</p>
+            <p class="form-control-TXOUT-filled">Entered Receipient Address: <span class="text-break" style="color: cyan"><%= RecAdd %></span></p>
+            <p class="form-control-TXOUT-filled">Amount: <span style="color: yellow"><%= Amount %></span></p>
+            <p class="form-control-TXOUT-filled">ScriptPubKey: <span class="text-break" style="color: cyan"><%= ScriptPubKey %></span></p>
+          </div>
+          <button class="btn btn-primary mt-0 mb-1">NEXT</button>
+        </form>
+      </div>
+    </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </body>
+  <%- include('includes/footer') %>
+</html>

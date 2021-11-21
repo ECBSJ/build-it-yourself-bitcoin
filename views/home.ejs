@@ -1,0 +1,69 @@
+<html lang="en">
+  <%- include('includes/header') %>
+
+
+
+    <div class="parent1">
+      <div class="child1">
+        <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="currentColor" class="bi bi-binoculars mb-3" viewBox="0 0 16 16">
+          <path d="M3 2.5A1.5 1.5 0 0 1 4.5 1h1A1.5 1.5 0 0 1 7 2.5V5h2V2.5A1.5 1.5 0 0 1 10.5 1h1A1.5 1.5 0 0 1 13 2.5v2.382a.5.5 0 0 0 .276.447l.895.447A1.5 1.5 0 0 1 15 7.118V14.5a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 14.5v-3a.5.5 0 0 1 .146-.354l.854-.853V9.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v.793l.854.853A.5.5 0 0 1 7 11.5v3A1.5 1.5 0 0 1 5.5 16h-3A1.5 1.5 0 0 1 1 14.5V7.118a1.5 1.5 0 0 1 .83-1.342l.894-.447A.5.5 0 0 0 3 4.882V2.5zM4.5 2a.5.5 0 0 0-.5.5V3h2v-.5a.5.5 0 0 0-.5-.5h-1zM6 4H4v.882a1.5 1.5 0 0 1-.83 1.342l-.894.447A.5.5 0 0 0 2 7.118V13h4v-1.293l-.854-.853A.5.5 0 0 1 5 10.5v-1A1.5 1.5 0 0 1 6.5 8h3A1.5 1.5 0 0 1 11 9.5v1a.5.5 0 0 1-.146.354l-.854.853V13h4V7.118a.5.5 0 0 0-.276-.447l-.895-.447A1.5 1.5 0 0 1 12 4.882V4h-2v1.5a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V4zm4-1h2v-.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5V3zm4 11h-4v.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5V14zm-8 0H2v.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5V14z"/>
+        </svg>
+        <h1>Step 1</h1>
+        <h2 class="display-5">Bitcoin address data lookup.</h2>
+        <h4><em>This tutorial starts out with inputting an existing bitcoin address into the field on the right.</em></h4>
+        <div class="explanation">
+          <p>On the right side module, enter in a P2PKH (starting with a '1') or P2WPKH (starting with a 'bc1') bitcoin address. This tutorial only supports 1 TXIN UTXO and 1 TXOUT UTXO. Highly advised to use a private key/public address pair that you don't plan to use again for security purposes.</p>
+        </div>
+        <button class="btn btn-outline-white bg-white" data-bs-toggle="modal" data-bs-target="#learn">Read More</button>
+
+        <div class="modal fade" id="learn" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="color: black">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Network Information Discovery</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <p>By entering in your Bitcoin public address into the field, this then enables the network to look up all the meta data pertaining to this particular bitcoin address. Reaching out on the network and calling for information is part of the open-source nature of the protocol. Information can be retrieved from other existing nodes that are willing to relay back information about the bitcoin address in question, all within a permissionless manner.</p>
+                <p>From Jimmy Song's Programming Bitcoin: "The peer-to-peer network that Bitcoin runs on is what gives it a lot of its robustness. More than 65,000 nodes are running on the network as of this writing and are communicating constantly. The Bitcoin network is a broadcast network, or gossip network. Every node is announcing different transactions, blocks, and peers that it knows about. The protocol is rich and has a lot of features that have been added to it over the years. One thing to note about the networking protocol is that it is not consensus-critical. The same data can be sent from one node to another using some other protocol and the blockchain itself will not be affected."</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="child2">
+        <form class="pubaddinput" id="enterBTCAdd" action="/retrieveData" method="POST">
+          <input class="pubaddinput" id="publicAddress" name="publicAddress" autofocus autocomplete="off" type="text" placeholder="Enter a BTC Address" />
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+          <div id="error" class="errormessage mt-3 text-danger"></div>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      const isP2WPKH = address => address.startsWith("bc1") && address.length === 42
+      const isP2PKH = address => address.startsWith("1") && address.length == 34
+      let enteredPubAdd = document.getElementById("publicAddress")
+
+      document.getElementById("enterBTCAdd").addEventListener("submit", e => {
+        let messages = []
+        if (!isP2WPKH(enteredPubAdd.value)) {
+          if (!isP2PKH(enteredPubAdd.value)) {
+            messages.push("You must provide a valid Legacy or native Segwit BTC public address")
+          }
+        }
+
+        if (messages.length > 0) {
+          e.preventDefault()
+          document.getElementById("error").innerText = messages.join(", ")
+        }
+      })
+    </script>
+
+  </body>
+  <%- include('includes/footer') %>
+</html>

@@ -1,0 +1,100 @@
+<html lang="en">
+  <%- include('includes/header') %>
+
+  <body>
+    <div class="parent1">
+      <div class="child1">
+        <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="currentColor" class="bi bi-diagram-3 mb-3" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M6 3.5A1.5 1.5 0 0 1 7.5 2h1A1.5 1.5 0 0 1 10 3.5v1A1.5 1.5 0 0 1 8.5 6v1H14a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-1 0V8h-5v.5a.5.5 0 0 1-1 0V8h-5v.5a.5.5 0 0 1-1 0v-1A.5.5 0 0 1 2 7h5.5V6A1.5 1.5 0 0 1 6 4.5v-1zM8.5 5a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1zM0 11.5A1.5 1.5 0 0 1 1.5 10h1A1.5 1.5 0 0 1 4 11.5v1A1.5 1.5 0 0 1 2.5 14h-1A1.5 1.5 0 0 1 0 12.5v-1zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zm4.5.5A1.5 1.5 0 0 1 7.5 10h1a1.5 1.5 0 0 1 1.5 1.5v1A1.5 1.5 0 0 1 8.5 14h-1A1.5 1.5 0 0 1 6 12.5v-1zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zm4.5.5a1.5 1.5 0 0 1 1.5-1.5h1a1.5 1.5 0 0 1 1.5 1.5v1a1.5 1.5 0 0 1-1.5 1.5h-1a1.5 1.5 0 0 1-1.5-1.5v-1zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1z" />
+        </svg>
+        <h1>Step 5</h1>
+        <h2 class="display-5">Build ScriptPubKey</h2>
+        <h4><em>Now with the hash160 of the receiving address revealed, package the necessary Script operators to generate the actual ScriptPubKey.</em></h4>
+        <div class="explanation">
+          <p>Input the correct Script operators in its corresponding field. For example, type 'OP_DUP' in the field labeled as 'OP_DUP'. Complete this for the other 3 fields and click on 'Compile ScriptPubKey'. Then copy/paste the generated ScriptPubKey hash into the ScriptPubKey field in the transaction builder form below. Lastly, input the amount intended to send out.</p>
+        </div>
+        <button class="btn btn-outline-white bg-white" data-bs-toggle="modal" data-bs-target="#learn">Read More</button>
+
+        <div class="modal fade" id="learn" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="color: black">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">What is a ScriptPubKey?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <p>From Mastering Bitcoin by Andreas Antonopoulos: A locking script is an encumbrance placed on an output, and it specifies the conditions that must be met to spend the output in the future. Historically, the locking script was called a scriptPubKey, because it usually contained a public key or bitcoin address.</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="child2-2">
+        <div class="buildSPKForm">
+          <div class="inputtingOPS">
+            <form id="createSPK" class="OP-Form" action="" method="">
+              <input id="input-field" class="OP-Input mt-2" type="text" name="OP_DUP" autocomplete="off" placeholder="OP_DUP / 0x76" />
+              <input id="input-field" class="OP-Input mt-3" type="text" name="OP_HASH160" autocomplete="off" placeholder="OP_HASH160 / 0xa9" />
+              <p class="mt-3 fs-5 text-light">Hash160: <%= hash160 %></p>
+              <input id="input-field" class="OP-Input mt-0" type="text" name="OP_EQUALVERIFY" autocomplete="off" placeholder="OP_EQUALVERIFY / 0x88" />
+              <input id="input-field" class="OP-Input mt-3" type="text" name="OP_CHECKSIG" autocomplete="off" placeholder="OP_CHECKSIG / 0xac" />
+              <button class="btn btn-primary mt-3">Compile ScriptPubKey and concatenate it to UTXOs</button>
+            </form>
+          </div>
+
+          <div class="showSPK">
+            <ul class="text-break text-light fs-3" id="item-list"></ul>
+          </div>
+        </div>
+
+        <form id="TXBuilder" class="TXBuilderForm" action="/enterWIF" method="POST">
+          <div class="TXIN-Form-2">
+            <p class="TXIN-and-Out-Labels">TXIn</p>
+            <p class="form-control-TXIN-filled">Input TX ID: <span class="text-break" style="color: cyan"><%= inputTXID %></span></p>
+            <p class="form-control-TXIN-filled">Input outputN: <span style="color: yellow"><%= outputN %></span></p>
+            <p class="form-control-TXIN-filled">Input Value: <span id="inputValue" style="color: yellow"><%= inputValue %></span></p>
+            <input id="input-field" class="form-control-TXIN" type="text" name="ScriptSig" autocomplete="off" placeholder="ScriptSig" disabled />
+          </div>
+
+          <div class="TXOUT-Form-2">
+            <p class="TXIN-and-Out-Labels">TXOut</p>
+            <p class="form-control-TXOUT-filled">Receipient Address: <span class="text-break" style="color: cyan"><%= RecAdd %></span></p>
+            <input id="inputAmount" class="form-control-TXOUT" type="number" name="Amount" autocomplete="off" placeholder="Amount" required />
+            <input id="input-field" class="form-control-TXOUT" type="text" name="SPK" autocomplete="off" placeholder="ScriptPubKey" required />
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+            <div id="error" class="errormessage"></div>
+          </div>
+          <button class="btn btn-primary mt-0 mb-1">NEXT</button>
+        </form>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script>
+          document.getElementById("createSPK").addEventListener("submit", function (e) {
+            e.preventDefault()
+            axios.get("/createSPK").then(function (response) {
+              document.getElementById("item-list").insertAdjacentText("beforeend", "ScriptPubKey: " + response.data)
+            })
+          })
+
+          document.getElementById("TXBuilder").addEventListener("submit", e => {
+            let messages = []
+            let inputAmount = document.getElementById("inputAmount")
+            let inputValue = document.getElementById("inputValue")
+            if (inputValue.innerText - inputAmount.value < 200) {
+              messages.push("The minimum transaction fee should be at least 200 sats")
+            }
+
+            if (messages.length > 0) {
+              e.preventDefault()
+              document.getElementById("error").innerText = messages.join(", ")
+            }
+          })
+        </script>
+      </div>
+    </div>
+  </body>
+  <%- include('includes/footer') %>
+</html>
