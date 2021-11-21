@@ -7,6 +7,8 @@ This tool serves as an educational tool for users and newcomers to understand so
 
 <h2>How to use</h2>
 
+*If you are viewing the application on the small screen, it is suggested to zoom out in the browser for better viewing experience. This responsive design is part of the future improvement considerations listed below.
+
 The application guides a user through some simple steps on building and broadcasting out a transaction. 
 
 It's meant to be educational, informative, simple, and fun. 
@@ -48,5 +50,5 @@ Step 9: Broadcast given transaction hex.
 - Adding support for P2SH transactions
 - Adding multi-signature transaction support
 - Allowing for multiple TXIN and TXOUT capabilities.
-- UI/UX improvement.
+- UI/UX improvement. If you are viewing the application on the small screen, it is suggested to zoom out in the browser for better viewing experience.
 - Proper codebase audit/review.
