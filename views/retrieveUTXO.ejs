@@ -9,9 +9,13 @@
         </svg>
         <h1>Step 3</h1>
         <h2 class="display-5">Start TX Builder</h2>
-        <h4><em>With your UTXOs displaying, you can now start to build your transaction by inputting TXIn details.</em></h4>
+        <h4><em>With your UTXO displaying, you can now start to build your transaction by inputting TXIn details.</em></h4>
         <div class="explanation">
           <p>Click on 'Start TX Builder' and first start inputting the necessary details for TXIn: TX ID, Output, and Value.</p>
+          <p># of UTXOs locked to this address: <%= numOfUTXO %></p>
+          <p>
+            <strong><span style="color: red">Warning: If there is more than 1 UTXO locked to this address, you will need to use another address with only one UTXO. This application only allows for 1 TXIN and does not supply you with a change address.</span></strong>
+          </p>
         </div>
         <button class="btn btn-outline-white bg-white" data-bs-toggle="modal" data-bs-target="#learn">Read More</button>
 
@@ -35,17 +39,15 @@
 
       <div class="child2-2">
         <div class="UTXO">
-          <p><strong>unspent_outputs:</strong> [</p>
-          <div class="singleUTXO">
-            <% UTXOS.forEach(function(UTXO) { %>
-            <p>tx_hash: <span style="color: cyan"><%= UTXO['tx_hash_big_endian'] %></span></p>
-            <p>tx_output_n: <span style="color: yellow"><%= UTXO['tx_output_n'] %></span></p>
-            <p>script: <span style="color: cyan"><%= UTXO['script'] %></span></p>
-            <p>value: <span style="color: yellow"><%= UTXO['value'] %></span></p>
-            <p>value Hex: <span style="color: cyan"><%= UTXO['value_hex'] %></span></p>
-            <p>confirmations: <span style="color: yellow"><%= UTXO['confirmations'] %></span></p>
-            <p>tx_index: <span style="color: yellow"><%= UTXO['tx_index'] %></span> ]</p>
-            <% }) %>
+          <p><strong>unspent_output:</strong> [</p>
+          <div class="singleUTXO" id="singleUTXO">
+            <p>tx_hash: <span style="color: cyan"><%= UTXOS[0]['tx_hash_big_endian'] %></span></p>
+            <p>tx_output_n: <span style="color: yellow"><%= UTXOS[0]['tx_output_n'] %></span></p>
+            <p>script: <span style="color: cyan"><%= UTXOS[0]['script'] %></span></p>
+            <p>value (satoshis): <span style="color: yellow"><%= UTXOS[0]['value'] %></span></p>
+            <p>value Hex: <span style="color: cyan"><%= UTXOS[0]['value_hex'] %></span></p>
+            <p>confirmations: <span style="color: yellow"><%= UTXOS[0]['confirmations'] %></span></p>
+            <p>tx_index: <span style="color: yellow"><%= UTXOS[0]['tx_index'] %></span> ]</p>
           </div>
           <a href="#transaction-builder" data-bs-toggle="collapse" class="btn btn-primary btn-sm" role="button">Open TX Builder Form</a>
         </div>
@@ -54,9 +56,9 @@
           <div class="collapse" id="transaction-builder">
             <div class="TXIN-Form">
               <p class="TXIN-and-Out-Labels">TXIn</p>
-              <input id="input-field-TXIN" class="form-control-TXIN" type="text" name="TXID" autocomplete="off" placeholder="TX ID" required />
-              <input id="input-field-TXIN" class="form-control-TXIN" type="number" name="output" autocomplete="off" placeholder="Output" required />
-              <input id="input-field-TXIN" class="form-control-TXIN" type="number" name="Value" autocomplete="off" placeholder="Value" required />
+              <input id="input-field-TXIN" class="form-control-TXIN" type="text" name="TXID" autocomplete="off" placeholder="TX ID" autofocus tabindex="0" data-bs-toggle="popover" data-bs-placement="right" data-bs-trigger="hover" title="Step 3" data-bs-content="Insert the tx_hash value from above into this TX ID field." required />
+              <input id="input-field-TXIN" class="form-control-TXIN" type="number" name="output" autocomplete="off" placeholder="Output" tabindex="0" data-bs-toggle="popover" data-bs-placement="right" data-bs-trigger="hover" title="Step 4" data-bs-content="Insert the tx_output_n value from above into this Output field." required />
+              <input id="input-field-TXIN" class="form-control-TXIN" type="number" name="Value" autocomplete="off" placeholder="Value" tabindex="0" data-bs-toggle="popover" data-bs-placement="right" data-bs-trigger="hover" title="Step 5" data-bs-content="Insert the 'value' value from above into this Value field. Then click NEXT below." required />
               <input id="input-field-TXIN" class="form-control-TXIN" type="text" name="ScriptSig" autocomplete="off" placeholder="ScriptSig" disabled />
             </div>
 
@@ -73,7 +75,7 @@
       </div>
     </div>
 
-    <script>
+    <!-- <script>
       document.getElementById("showTXBuilder").addEventListener("click", function (e) {
         e.preventDefault()
         document.getElementById("TXBuilderForm").insertAdjacentHTML(
@@ -99,7 +101,7 @@
             <button class="EnterRecAddButton">NEXT</button>`
         )
       })
-    </script>
+    </script> -->
   </body>
   <%- include('includes/footer') %>
 </html>

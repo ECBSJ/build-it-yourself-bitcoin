@@ -37,12 +37,15 @@
 
       <div class="child2">
         <form class="pubaddinput" id="enterBTCAdd" action="/retrieveData" method="POST">
-          <input class="pubaddinput" id="publicAddress" name="publicAddress" autofocus autocomplete="off" type="text" placeholder="Enter a BTC Address" />
+          <input class="pubaddinput" id="publicAddress" name="publicAddress" autofocus autocomplete="off" type="text" placeholder="Enter a BTC Address" tabindex="0" data-bs-toggle="popover" data-bs-placement="right" data-bs-trigger="hover" title="Step 1" data-bs-content="Enter in a valid Legacy or Segwit address with only 1 UTXO." />
           <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
           <div id="error" class="errormessage mt-3 text-danger"></div>
         </form>
       </div>
     </div>
+
+
+    
 
     <script>
       const isP2WPKH = address => address.startsWith("bc1") && address.length === 42

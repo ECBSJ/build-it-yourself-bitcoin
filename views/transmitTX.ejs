@@ -48,8 +48,8 @@
             <p class="form-control-TXIN-filled">Input TX ID: <span class="text-break" style="color: cyan"><%= inputTXID %></span></p>
             <p class="form-control-TXIN-filled">Input outputN: <span style="color: yellow"><%= outputN %></span></p>
             <p class="form-control-TXIN-filled">Input Value: <span id="inputValue" style="color: yellow"><%= inputValue %></span></p>
-            <input id="input-field" class="form-control-TXIN" type="text" name="Signature" autocomplete="off" placeholder="Signature" required />
-            <input id="input-field" class="form-control-TXIN" type="text" name="PublicKey" autocomplete="off" placeholder="PublicKey" required />
+            <input id="input-field" class="form-control-TXIN" type="text" name="Signature" autocomplete="off" placeholder="Signature" tabindex="0" data-bs-toggle="popover" data-bs-placement="right" data-bs-trigger="hover" title="Step 15" data-bs-content="Insert the above Signature value into this field." required />
+            <input id="input-field" class="form-control-TXIN" type="text" name="PublicKey" autocomplete="off" placeholder="PublicKey" tabindex="0" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-trigger="hover" title="Step 16" data-bs-content="Insert the above PublicKey value into this field. Then click 'Generate Transaction Hex' below." required />
           </div>
 
           <div class="TXOUT-Form-2">

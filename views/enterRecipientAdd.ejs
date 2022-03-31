@@ -23,7 +23,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                <p>From Mastering Bitcoin by Andreas Antonopoulos: A locking script is an encumbrance placed on an output, and it specifies the conditions that must be met to spend the output in the future. Historically, the locking script was called a scriptPubKey, because it usually contained a public key or bitcoin address.</p>
+                <p>From Mastering Bitcoin by Andreas Antonopoulos: A locking script is an encumbrance placed on an output, and it specifies the conditions that must be met to spend the output in the future. Historically, the locking script was called a ScriptPubKey, because it usually contained a public key or bitcoin address.</p>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -36,7 +36,7 @@
       <div class="child2-2">
         <div class="buildSPKForm">
           <form class="pubaddinput" action="/buildScriptPubKey" method="POST">
-            <input id="input-field" class="pubaddinput" type="text" name="RecipientAdd2Hash160" autocomplete="off" placeholder="Enter Receiving Address" required />
+            <input id="input-field" class="pubaddinput" type="text" name="RecipientAdd2Hash160" autocomplete="off" placeholder="Enter Receiving Address" tabindex="0" data-bs-toggle="popover" data-bs-placement="right" data-bs-trigger="hover" title="Step 6" data-bs-content="Insert a receiving address and then hit Enter" required />
             <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
           </form>
         </div>

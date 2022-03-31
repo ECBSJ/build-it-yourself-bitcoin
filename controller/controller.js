@@ -24,8 +24,8 @@ exports.retrieveData = async function (req, res) {
 exports.retrieveUTXO = async function (req, res) {
   let fetchedUTXO = await newTXObject.grabUTXO()
   let UTXOS = await fetchedUTXO["unspent_outputs"]
-
-  res.render("retrieveUTXO", { UTXOS: UTXOS })
+  let numOfUTXO = await UTXOS.length
+  res.render("retrieveUTXO", { UTXOS: UTXOS, numOfUTXO: numOfUTXO })
 }
 
 exports.enterRecipientAdd = async function (req, res) {

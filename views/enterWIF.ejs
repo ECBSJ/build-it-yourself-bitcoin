@@ -45,7 +45,7 @@
       <div class="child2-2">
         <div class="buildSPKForm">
           <form class="pubaddinput" id="WIF" action="/createScriptSig" method="POST">
-            <input id="input-field" class="pubaddinput" type="text" name="PrivateKey" autocomplete="off" placeholder="WIF" required />
+            <input id="input-field" class="pubaddinput" type="text" name="PrivateKey" autocomplete="off" placeholder="WIF" tabindex="0" data-bs-toggle="popover" data-bs-placement="right" data-bs-trigger="hover" title="Step 13" data-bs-content="Insert in your WIF formatted private key. Then hit Enter." required />
             <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
           </form>
         </div>

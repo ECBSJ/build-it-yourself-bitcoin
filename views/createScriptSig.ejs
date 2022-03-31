@@ -38,7 +38,7 @@
           <form class="preSigned" action="/transmitTX" method="POST">
             <p>Pre-Signed Transaction Hash: <span class="text-break" style="color: cyan"><%= presignedTXHash %></span></p>
             <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
-            <button class="btn btn-primary">Sign transaction</button>
+            <button class="btn btn-primary" tabindex="0" data-bs-toggle="popover" data-bs-placement="right" data-bs-trigger="hover" title="Step 14" data-bs-content="Click to sign your transaction with your private key.">Sign transaction</button>
           </form>
         </div>
 
