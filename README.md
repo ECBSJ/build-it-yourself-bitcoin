@@ -21,7 +21,7 @@ Some notes to point out before starting:
 
 3.This will only support P2PKH and P2WPKH transactions. 
 
-4.If you would like to create some private/public key pairs to use during the process, you can create your own at www.rawbitcoinkeys.com (this is another educational that teaches how a basic legacy (P2PKH) bitcoin address is made from a private key. 
+4.If you would like to create some private/public key pairs to use during the process, you can create your own at https://raw-keys.herokuapp.com/ (this is another educational that teaches how a basic legacy (P2PKH) bitcoin address is made from a private key. 
 
 If you would like to improve this tool, feel free to add a pull request to the repository.
 
